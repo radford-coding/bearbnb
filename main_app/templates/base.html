@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/icons8-berries-96.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <title>BearBnB</title>
+    {% block head %}
+
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <div class="header-logo-container">
+        {% comment %} <a href="/"><img src="{% static 'images/icons8-berries-96.png' %}" alt="The Berry Picker Logo" /></a> {% endcomment %}
+        <h1>BearBnB</h1>
+      </div>
+      <nav>
+        {% comment %} <ul>
+          {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'berry-index' %}">All Berries</a>
+            </li>
+            <li>
+              <a href="{% url 'farm-index' %}">All Farms</a>
+            </li>
+            <li>
+              <a href="{% url 'berry-create' %}">Add a Berry</a>
+            </li>
+            <li>
+              <a href="{% url 'farm-create' %}">Add a Farm</a>
+            </li>
+            <li>
+              <a href="{% url 'about' %}">About</a>
+            </li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'about' %}">About</a>
+            </li>
+            <li>
+              <a href="{% url 'home' %}">Login</a>
+            </li>
+            <li>
+              <a href="{% url 'signup' %}">Sign Up</a>
+            </li>
+          {% endif %}
+        </ul> {% endcomment %}
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">Login</a>
+            </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+  </body>
+</html>
