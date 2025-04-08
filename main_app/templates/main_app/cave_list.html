@@ -14,7 +14,7 @@
   <section>
     {% for cave in cave_list %}
       <div class="card">
-        <a href="{% url 'home' %}">
+        <a href="{% url 'cave-detail' cave.id %}">
           <div class="card-content">
             <div class="image-container">
               {% comment %} <img src="" alt="" /> {% endcomment %}

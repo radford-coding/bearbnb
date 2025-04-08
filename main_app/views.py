@@ -16,3 +16,6 @@ class About(TemplateView):
 
 class CaveIndex(ListView):
     model = Cave
+
+class CaveDetail(DetailView):
+    model = Cave
