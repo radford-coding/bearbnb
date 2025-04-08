@@ -19,3 +19,15 @@ class CaveIndex(ListView):
 
 class CaveDetail(DetailView):
     model = Cave
+
+class CaveCreate(CreateView):
+    model = Cave
+    fields = ['name', 'rate', 'sleeps', 'address', 'city', 'state', 'zipcode', 'description']
+
+    success_url = '/caves/'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        form.instance.latitude = 1
+        form.instance.longitude = 1
+        return super().form_valid(form)
