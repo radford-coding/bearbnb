@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/icons8-berries-96.png' %}" />
+    {% comment %} <link rel="shortcut icon" type="image/png" href="{% static 'images/icons8-berries-96.png' %}" /> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <title>BearBnB</title>
     {% block head %}
@@ -58,6 +58,7 @@
         <ul>
             <li>
                 <a href="{% url 'home' %}">Login</a>
+                <a href="{% url 'cave-index' %}">Caves</a>
                 <a href="{% url 'about' %}">About</a>
             </li>
         </ul>
