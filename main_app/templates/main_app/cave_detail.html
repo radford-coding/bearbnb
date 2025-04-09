@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/caves/cave-detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div></div>
+    <div>
+      <h2>{{ cave.name }}</h2>
+      <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
+      <p>sleeps {{ cave.sleeps }}</p>
+      <p>for ${{ cave.rate }}/night</p>
+      <p>description: {{ cave.description }}</p>
+    </div>
+  </div>
+  <a href="{% url 'cave-update' cave.id %}">Edit</a>
+  <a href="{% url 'cave-delete' cave.id %}">Delete</a>
+{% endblock %}

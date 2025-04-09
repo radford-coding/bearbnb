@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/paw.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <title>BearBnB</title>
+    {% block head %}
+
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <div class="header-logo-container">
+        <img src="{% static 'images/paw.png' %}" alt="A bear paw" />
+        <h1>BearBnB</h1>
+      </div>
+      <nav>
+        <ul>
+          {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'cave-index' %}">Caves</a>
+            </li>
+            <li>
+                <a href="{% url 'cave-create' %}">Add Cave</a>
+            </li>
+            <li>
+              <a href="{% url 'about' %}">About</a>
+            </li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'about' %}">About</a>
+            </li>
+            <li>
+              <a href="{% url 'signup' %}">Sign Up</a>
+            </li>
+            <li>
+              <a href="{% url 'home' %}">Login</a>
+            </li>
+            <li>
+              {% comment %} <a href="{% url 'signup' %}">Sign Up</a> {% endcomment %}
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+      <hr>
+    </header>
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+  </body>
+</html>
