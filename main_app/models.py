@@ -27,3 +27,8 @@ class Cave(models.Model):
 # class Bear(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+class Hibernation(models.Model):
+    start_date = models.DateField()
+    nights = models.IntegerField(validators=[MaxValueValidator(90)])
+    cave = models.ForeignKey(Cave, on_delete=models.CASCADE)
+    bear = models.ForeignKey(User, on_delete=models.CASCADE)
