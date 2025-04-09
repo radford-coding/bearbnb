@@ -16,9 +16,9 @@ class CaveForm(forms.ModelForm):
             )
         }
 
-class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=200)
+# class SignUpForm(UserCreationForm):
+#     email = forms.EmailField(max_length=200)
 
-    class Meta:
-        model = User
-        fields = ['email', 'password1', 'password2']
+#     class Meta:
+#         model = User
+#         fields = ['email', 'password1', 'password2']

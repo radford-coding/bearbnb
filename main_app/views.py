@@ -49,8 +49,7 @@ def signup(request):
             login(request, user)
             return redirect('cave-index')
         else:
-            print(form)
-            error_msg = 'Invalid sign-up try again'
+            error_msg = 'Invalid sign-up - try again' # needs more descriptive feedback. also doesn't work...
 
     form = UserCreationForm()
     context = {'form': form, 'error_msg': error_msg}

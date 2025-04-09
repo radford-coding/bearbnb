@@ -2,9 +2,10 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from localflavor.us.models import USStateField, USZipCodeField
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
+
 
 class Cave(models.Model):
     name = models.CharField(max_length=100)
@@ -27,8 +28,12 @@ class Cave(models.Model):
 # class Bear(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+
 class Hibernation(models.Model):
-    start_date = models.DateField()
-    nights = models.IntegerField(validators=[MaxValueValidator(90)])
+    start_date = models.DateField('First night')
+    nights = models.PositiveIntegerField(validators=[MaxValueValidator(90), MinValueValidator(1)])
     cave = models.ForeignKey(Cave, on_delete=models.CASCADE)
     bear = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.nights} {'nights' if self.nights > 1 else 'night'} in: {self.cave.name} ({self.id})'
