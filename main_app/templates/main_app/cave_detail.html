@@ -17,6 +17,6 @@
       <p>description: {{ cave.description }}</p>
     </div>
   </div>
-  <a href="">Edit</a>
-  <a href="">Delete</a>
+  <a href="{% url 'cave-update' cave.id %}">Edit</a>
+  <a href="{% url 'cave-delete' cave.id %}">Delete</a>
 {% endblock %}

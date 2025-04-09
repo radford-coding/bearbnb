@@ -1,3 +1,4 @@
+from ast import Del
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -17,19 +18,27 @@ class Home(LoginView):
 class About(TemplateView):
     template_name = 'about.html'
 
-class CaveIndex(ListView):
+class CaveIndex(LoginRequiredMixin, ListView):
     model = Cave
 
-class CaveDetail(DetailView):
+class CaveDetail(LoginRequiredMixin, DetailView):
     model = Cave
 
-class CaveCreate(CreateView):
+class CaveCreate(LoginRequiredMixin, CreateView):
     model = Cave
     fields = ['name', 'rate', 'sleeps', 'address', 'city', 'state', 'zipcode', 'description']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+class CaveUpdate(LoginRequiredMixin, UpdateView):
+    model = Cave
+    fields = ['name', 'rate', 'sleeps', 'description']
+
+class CaveDelete(LoginRequiredMixin, DeleteView):
+    model = Cave
+    success_url = '/caves/'
 
 def signup(request):
     error_msg = ''

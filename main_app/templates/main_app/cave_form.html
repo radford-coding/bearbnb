@@ -8,8 +8,9 @@
 
 {% block content %}
   <div class="page-header">
-    {% if object %}
-      <h1>edit {{ object.name }}</h1>
+    {% if cave %}
+      <h1>edit {{ cave.name }}</h1>
+      <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
     {% else %}
       <h1>Add a Cave</h1>
     {% endif %}
