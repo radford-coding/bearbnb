@@ -8,7 +8,8 @@ from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cave
+from .models import Cave, Hibernation
+from .forms import HibernationForm
 
 # Create your views here.
 
@@ -23,6 +24,26 @@ class CaveIndex(LoginRequiredMixin, ListView):
 
 class CaveDetail(LoginRequiredMixin, DetailView):
     model = Cave
+
+    def get_queryset(self):
+        return Cave.objects.all() # maybe get just one?
+    
+    def get_context_data(self, **kwargs):
+        form = HibernationForm()
+        context = super().get_context_data(**kwargs)
+        if not kwargs.get('form'):
+            context['form'] = form
+        return context
+
+    def post(self, request, **kwargs):
+        form = HibernationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cave-index')
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
+    
+
 
 class CaveCreate(LoginRequiredMixin, CreateView):
     model = Cave
@@ -54,3 +75,15 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_msg': error_msg}
     return render(request, 'signup.html', context)
+
+# class HibernationCreateView(LoginRequiredMixin, CreateView):
+#     model = Hibernation
+#     fields = ['start_date', 'nights']
+
+# class HibernationUpdateView(LoginRequiredMixin, UpdateView):
+#     model = Hibernation
+#     fields = ['start_date', 'nights']
+
+# class HibernationDeleteView(LoginRequiredMixin, DeleteView):
+#     model = Hibernation
+#     success_url = '/caves/'

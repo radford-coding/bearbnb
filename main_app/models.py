@@ -37,3 +37,7 @@ class Hibernation(models.Model):
 
     def __str__(self):
         return f'{self.nights} {'nights' if self.nights > 1 else 'night'} in: {self.cave.name} ({self.id})'
+    
+    # def get_absolute_url(self):
+    #     return reverse("hibernation-detail", kwargs={"pk": self.id})
+    
