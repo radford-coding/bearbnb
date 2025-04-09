@@ -11,7 +11,7 @@
     <h1>Cave List</h1>
   </section>
 
-  <section>
+  <section class="card-container">
     {% for cave in cave_list %}
       <div class="card">
         <a href="{% url 'cave-detail' cave.id %}">

@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+# from .forms import SignUpForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
@@ -24,10 +27,22 @@ class CaveCreate(CreateView):
     model = Cave
     fields = ['name', 'rate', 'sleeps', 'address', 'city', 'state', 'zipcode', 'description']
 
-    success_url = '/caves/'
-
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        form.instance.latitude = 1
-        form.instance.longitude = 1
         return super().form_valid(form)
+
+def signup(request):
+    error_msg = ''
+    if request.method == 'POST':
+        form = UserCreationForm()
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('cave-index')
+        else:
+            print(form)
+            error_msg = 'Invalid sign-up try again'
+
+    form = UserCreationForm()
+    context = {'form': form, 'error_msg': error_msg}
+    return render(request, 'signup.html', context)

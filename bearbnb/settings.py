@@ -118,6 +118,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# specify where successful logins/logouts go
+LOGIN_REDIRECT_URL = 'cave-index'
+LOGOUT_REDIRECT_URL = 'home'
+
+# specify where decorators and mixins should redirect to
+LOGIN_URL = 'home'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
