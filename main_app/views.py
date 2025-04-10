@@ -91,11 +91,6 @@ class HibernationCreateView(LoginRequiredMixin, CreateView):
     model = Hibernation
     fields = ['start_date', 'nights']
 
-    def form_valid(self, form):
-        form.instance.bear = self.request.user
-        # form.instance.cave = current_cave
-        return super().form_valid(form)
-
 # class HibernationUpdateView(LoginRequiredMixin, UpdateView):
 #     model = Hibernation
 #     fields = ['start_date', 'nights']
