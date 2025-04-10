@@ -21,8 +21,13 @@
     <a href="{% url 'cave-update' cave.id %}">Edit</a>
     <a href="{% url 'cave-delete' cave.id %}">Delete</a>
   {% endif %}
-
   <hr>
+  <h2>Booked hibernations:</h2>
+  {% for hibernation in cave.hibernation_set.all %}
+    <p>{{ hibernation.start_date }}</p>
+  {% endfor %}
+
+  <hr />
   <h2>Book a Hibernation:</h2>
   <form action="" method="post" class="form-container">
     {% csrf_token %}
