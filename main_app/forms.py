@@ -29,6 +29,10 @@ class HibernationForm(forms.ModelForm):
                 }
             )
         }
+    
+    # def form_valid(self, form):
+    #     form.instance.bear = self.request.user
+    #     return super().form_valid(form)
 
 # class SignUpForm(UserCreationForm):
 #     email = forms.EmailField(max_length=200)

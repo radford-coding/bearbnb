@@ -35,8 +35,10 @@ class CaveDetail(LoginRequiredMixin, DetailView):
             context['form'] = form
         return context
 
-    def post(self, request, **kwargs):
+    def post(self, request, pk):
         form = HibernationForm(request.POST)
+        form.instance.bear = request.user
+        form.instance.cave = Cave.objects.get(id=pk)
         if form.is_valid():
             form.save()
             return redirect('cave-index')
@@ -76,9 +78,14 @@ def signup(request):
     context = {'form': form, 'error_msg': error_msg}
     return render(request, 'signup.html', context)
 
-# class HibernationCreateView(LoginRequiredMixin, CreateView):
-#     model = Hibernation
-#     fields = ['start_date', 'nights']
+class HibernationCreateView(LoginRequiredMixin, CreateView):
+    model = Hibernation
+    fields = ['start_date', 'nights']
+
+    def form_valid(self, form):
+        form.instance.bear = self.request.user
+        # form.instance.cave = current_cave
+        return super().form_valid(form)
 
 # class HibernationUpdateView(LoginRequiredMixin, UpdateView):
 #     model = Hibernation
