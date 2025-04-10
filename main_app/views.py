@@ -53,7 +53,7 @@ class CaveDetail(LoginRequiredMixin, DetailView):
 class CaveCreate(LoginRequiredMixin, CreateView):
     model = Cave
     fields = ['name', 'rate', 'sleeps', 'address',
-              'city', 'state', 'zipcode', 'description']
+              'city', 'state', 'zipcode', 'description', 'image']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
@@ -87,9 +87,9 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 
-class HibernationCreateView(LoginRequiredMixin, CreateView):
-    model = Hibernation
-    fields = ['start_date', 'nights']
+# class HibernationCreateView(LoginRequiredMixin, CreateView):
+#     model = Hibernation
+#     fields = ['start_date', 'nights']
 
 # class HibernationUpdateView(LoginRequiredMixin, UpdateView):
 #     model = Hibernation

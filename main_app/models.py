@@ -3,6 +3,14 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from localflavor.us.models import USStateField, USZipCodeField
 from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import datetime
+import os
+
+
+def filepath(request, filename):
+    current_time = datetime.now().strftime('%Y%m%d-%H:%M:%S')
+    new_filename = '%s%s' % (current_time, filename)
+    return os.path.join('uploads/', new_filename)
 
 # Create your models here.
 
@@ -16,6 +24,7 @@ class Cave(models.Model):
     state = USStateField()
     zipcode = USZipCodeField()
     description = models.TextField(max_length=500)
+    image = models.ImageField(upload_to=filepath, null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
