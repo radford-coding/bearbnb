@@ -8,8 +8,14 @@ from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cave, Hibernation
+from .models import Cave, Hibernation, Photo
 from .forms import HibernationForm
+import uuid
+import boto3
+from dotenv import load_dotenv
+import os
+load_dotenv()
+# SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Create your views here.
 
@@ -98,3 +104,9 @@ def signup(request):
 # class HibernationDeleteView(LoginRequiredMixin, DeleteView):
 #     model = Hibernation
 #     success_url = '/caves/'
+
+def add_photo(request, cave_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]

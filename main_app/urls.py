@@ -9,4 +9,5 @@ urlpatterns = [
     path('caves/<int:pk>/update/', views.CaveUpdate.as_view(), name='cave-update'),
     path('caves/<int:pk>/delete/', views.CaveDelete.as_view(), name='cave-delete'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('caves/<int:cave_id>/add_photo/', views.add_photo, name='add-photo'),
 ]
