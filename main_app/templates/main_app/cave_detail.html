@@ -5,7 +5,7 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/caves/cave-detail.css' %}" />
-  <script defer src="{% static 'js/invoice.js' %}"></script>
+  <script defer src="{% static 'js/helpers.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -15,14 +15,14 @@
       <h2>{{ cave.name }}</h2>
       <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
       <p>sleeps {{ cave.sleeps }}</p>
-      <p>for $<span id="rate">{{ cave.rate }}</span>/night</p>
+      <p>
+        for $<span id="rate">{{ cave.rate }}</span>/night
+      </p>
       <p>description: {{ cave.description }}</p>
-      {% comment %} <p>image: {{cave.image.url}}</p>
-      <img src="{% static cave.image.url %}" alt=""> {% endcomment %}
       {% for photo in cave.photo_set.all %}
-        <img src="{{ photo.url }}" alt="">
+        <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
       {% empty %}
-        <div>No Photos Uploaded</div>
+        <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" />
       {% endfor %}
     </div>
   </div>
@@ -31,10 +31,14 @@
     <a href="{% url 'cave-delete' cave.id %}">Delete</a>
     <form action="{% url 'add-photo' cave.id %}" enctype="multipart/form-data" method="POST" class="">
       {% csrf_token %}
-      <input type="file" name="photo-file">
-      <br>
-      <br>
-      <input type="submit" class="btn" value="Upload Photo">
+      <label class="custom-file-upload">
+        <input type="file" name="photo-file" id="file-upload"/>
+        File Upload
+      </label>
+      <p id="uploaded-file-name"></p>
+      <br />
+      <br />
+      <input type="submit" class="btn" value="Upload Photo" />
     </form>
   {% endif %}
   <hr />
