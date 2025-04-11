@@ -59,7 +59,7 @@ class CaveDetail(LoginRequiredMixin, DetailView):
 class CaveCreate(LoginRequiredMixin, CreateView):
     model = Cave
     fields = ['name', 'rate', 'sleeps', 'address',
-              'city', 'state', 'zipcode', 'description', 'image']
+              'city', 'state', 'zipcode', 'description']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user

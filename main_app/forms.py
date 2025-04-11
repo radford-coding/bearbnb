@@ -14,7 +14,6 @@ from .models import Cave, Hibernation
 #                     'placeholder': 'Choose a state'
 #                 }
 #             ),
-#             'image': forms.FileInput()
 #         }
 
 class HibernationForm(forms.ModelForm):
