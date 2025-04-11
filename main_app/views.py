@@ -8,37 +8,73 @@ from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cave
+from .models import Cave, Hibernation, Photo
+from .forms import HibernationForm
+import uuid
+import boto3
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 
 # Create your views here.
+
 
 class Home(LoginView):
     template_name = 'home.html'
 
+
 class About(TemplateView):
     template_name = 'about.html'
+
 
 class CaveIndex(LoginRequiredMixin, ListView):
     model = Cave
 
+
 class CaveDetail(LoginRequiredMixin, DetailView):
     model = Cave
 
+    # def get_queryset(self):
+    #     return Cave.objects.all()  # maybe get just one?
+
+    def get_context_data(self, **kwargs):
+        form = HibernationForm()
+        context = super().get_context_data(**kwargs)
+        if not kwargs.get('form'):
+            context['form'] = form
+        return context
+
+    def post(self, request, pk):
+        form = HibernationForm(request.POST)
+        form.instance.bear = request.user
+        form.instance.cave = Cave.objects.get(id=pk)
+        if form.is_valid():
+            form.save()
+            return redirect('cave-detail', pk=pk)
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
+
+
 class CaveCreate(LoginRequiredMixin, CreateView):
     model = Cave
-    fields = ['name', 'rate', 'sleeps', 'address', 'city', 'state', 'zipcode', 'description']
+    fields = ['name', 'rate', 'sleeps', 'address',
+              'city', 'state', 'zipcode', 'description']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
+
 class CaveUpdate(LoginRequiredMixin, UpdateView):
     model = Cave
     fields = ['name', 'rate', 'sleeps', 'description']
 
+
 class CaveDelete(LoginRequiredMixin, DeleteView):
     model = Cave
     success_url = '/caves/'
+
 
 def signup(request):
     error_msg = ''
@@ -49,9 +85,40 @@ def signup(request):
             login(request, user)
             return redirect('cave-index')
         else:
-            print(form)
-            error_msg = 'Invalid sign-up try again'
+            # needs more descriptive feedback. also doesn't work...
+            error_msg = 'Invalid sign-up - try again'
 
     form = UserCreationForm()
     context = {'form': form, 'error_msg': error_msg}
     return render(request, 'signup.html', context)
+
+
+# class HibernationCreateView(LoginRequiredMixin, CreateView):
+#     model = Hibernation
+#     fields = ['start_date', 'nights']
+
+# class HibernationUpdateView(LoginRequiredMixin, UpdateView):
+#     model = Hibernation
+#     fields = ['start_date', 'nights']
+
+# class HibernationDeleteView(LoginRequiredMixin, DeleteView):
+#     model = Hibernation
+#     success_url = '/caves/'
+
+
+def add_photo(request, cave_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            bucket = os.getenv('S3_BUCKET')
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f'{os.getenv('S3_BASE_URL')}{bucket}/{key}'
+            Photo.objects.create(url=url, cave_id=cave_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('cave-detail', pk=cave_id)
+    
+# SECRET_KEY = os.getenv('SECRET_KEY')

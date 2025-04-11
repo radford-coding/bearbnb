@@ -1,5 +1,7 @@
-html {
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* body:hover {
@@ -7,17 +9,78 @@ html {
 } */
 
 body {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
     --text-color: rgb(17, 20, 17);
     --link-hover-color: rgb(16, 56, 158);
+    --bg1: #484848;
+    --white: #EEEEEE;
+    --size1: 2.875rem;
+    --dkbrwn: #4A3C34;
+    --brown: #6c584c;
+    --tan: #a98467;
+    --green: #adc178;
+    --ltgrn: #dde5b6;
+    --cream: #f0ead2;
+    font-family: Montserrat;
 }
 
 nav {
-    margin: 10px;
+    background-color: var(--cream);
+    width: 100%;
+    padding: .5rem 1rem;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .625rem;
 }
 
+nav>* {
+    text-decoration: none;
+    color: var(--dkbrwn);
+    font-weight: 600;
+}
+
+nav button {
+    flex-shrink: 0;
+    width: calc(var(--size1) * 2);
+    height: var(--size1);
+    border-radius: calc(var(--size1) / 2);
+
+    background-color: var(--bg1);
+    color: var(--white);
+}
+
+body:hover {
+    cursor: url('../images/pointer.png'), auto;
+}
+
+a:hover,
+button:hover,
+input:hover,
+form input {
+    cursor: url('../images/paw.png'), auto;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    cursor: url('../images/paw.png'), auto;
+    background-color: antiquewhite;
+    display: inline-block;
+}
+
+.cave-image {
+    max-width: 40%;
+}
+
+
+/* 
 ul {
     list-style: none;
 }
@@ -42,4 +105,4 @@ nav ul {
 
 nav li {
     padding: 5px 8px;
-}
+} */

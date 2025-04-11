@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% comment %} {% load multiplication %} {% endcomment %}
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/caves/cave-detail.css' %}" />
+  <script defer src="{% static 'js/helpers.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -13,10 +15,44 @@
       <h2>{{ cave.name }}</h2>
       <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
       <p>sleeps {{ cave.sleeps }}</p>
-      <p>for ${{ cave.rate }}/night</p>
+      <p>
+        for $<span id="rate">{{ cave.rate }}</span>/night
+      </p>
       <p>description: {{ cave.description }}</p>
+      {% for photo in cave.photo_set.all %}
+        <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
+      {% empty %}
+        <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" />
+      {% endfor %}
     </div>
   </div>
-  <a href="{% url 'cave-update' cave.id %}">Edit</a>
-  <a href="{% url 'cave-delete' cave.id %}">Delete</a>
+  {% if user.id == cave.owner.id %}
+    <a href="{% url 'cave-update' cave.id %}">Edit</a>
+    <a href="{% url 'cave-delete' cave.id %}">Delete</a>
+    <form action="{% url 'add-photo' cave.id %}" enctype="multipart/form-data" method="POST" class="">
+      {% csrf_token %}
+      <label class="custom-file-upload">
+        <input type="file" name="photo-file" id="file-upload"/>
+        File Upload
+      </label>
+      <p id="uploaded-file-name"></p>
+      <br />
+      <br />
+      <input type="submit" class="btn" value="Upload Photo" />
+    </form>
+  {% endif %}
+  <hr />
+  <h2>Booked hibernations:</h2>
+  {% for hibernation in cave.hibernation_set.all %}
+    <p>{{ hibernation.start_date }}</p>
+  {% endfor %}
+
+  <hr />
+  <h2>Book a Hibernation:</h2>
+  <form action="" method="post" class="form-container">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <p id="price">price: $</p>
+    <button type="submit" class="btn submit">Submit!</button>
+  </form>
 {% endblock %}
