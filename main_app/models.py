@@ -1,3 +1,4 @@
+from urllib import request
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -6,11 +7,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
 import os
 
-
-def filepath(request, filename):
-    current_time = datetime.now().strftime('%Y%m%d-%H:%M:%S')
-    new_filename = '%s%s' % (current_time, filename)
-    return os.path.join('uploads/', new_filename)
 
 # Create your models here.
 
@@ -24,7 +20,6 @@ class Cave(models.Model):
     state = USStateField()
     zipcode = USZipCodeField()
     description = models.TextField(max_length=500)
-    image = models.ImageField(upload_to=filepath, null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -37,6 +32,12 @@ class Cave(models.Model):
 # class Bear(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+class Photo(models.Model):
+    url = models.TextField()
+    cave = models.ForeignKey(Cave, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Photo for cave_id: {self.cave_id} @{self.url}'
 
 class Hibernation(models.Model):
     start_date = models.DateField('First night')

@@ -12,6 +12,7 @@ whitenoise = "*"
 gunicorn = "*"
 dj-database-url = "*"
 pillow = "*"
+boto3 = "*"
 
 [dev-packages]
 

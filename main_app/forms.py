@@ -4,17 +4,18 @@ from django.contrib.auth.forms import UserCreationForm
 from localflavor.us.forms import USStateSelect
 from .models import Cave, Hibernation
 
-class CaveForm(forms.ModelForm):
-    class Meta:
-        model = Cave
-        fields = ['name', 'rate', 'sleeps', 'address', 'city', 'state', 'zipcode', 'description']
-        widgets = {
-            'state': USStateSelect(
-                attrs={
-                    'placeholder': 'Choose a state'
-                }
-            )
-        }
+# class CaveForm(forms.ModelForm):
+#     class Meta:
+#         model = Cave
+#         fields = ['name', 'rate', 'sleeps', 'address', 'city', 'state', 'zipcode', 'description']
+#         widgets = {
+#             'state': USStateSelect(
+#                 attrs={
+#                     'placeholder': 'Choose a state'
+#                 }
+#             ),
+#             'image': forms.FileInput()
+#         }
 
 class HibernationForm(forms.ModelForm):
     class Meta:

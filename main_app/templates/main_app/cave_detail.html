@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load multiplication %}
+{% comment %} {% load multiplication %} {% endcomment %}
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/caves/cave-detail.css' %}" />
@@ -17,6 +17,8 @@
       <p>sleeps {{ cave.sleeps }}</p>
       <p>for $<span id="rate">{{ cave.rate }}</span>/night</p>
       <p>description: {{ cave.description }}</p>
+      <p>image: {{cave.image.url}}</p>
+      <img src="{% static cave.image.url %}" alt="">
     </div>
   </div>
   {% if user.id == cave.owner.id %}

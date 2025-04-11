@@ -29,8 +29,8 @@ class CaveIndex(LoginRequiredMixin, ListView):
 class CaveDetail(LoginRequiredMixin, DetailView):
     model = Cave
 
-    def get_queryset(self):
-        return Cave.objects.all()  # maybe get just one?
+    # def get_queryset(self):
+    #     return Cave.objects.all()  # maybe get just one?
 
     def get_context_data(self, **kwargs):
         form = HibernationForm()
