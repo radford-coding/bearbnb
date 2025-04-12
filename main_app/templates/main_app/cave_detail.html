@@ -22,7 +22,7 @@
       {% for photo in cave.photo_set.all %}
         <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
       {% empty %}
-        <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" />
+        <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
       {% endfor %}
     </div>
   </div>

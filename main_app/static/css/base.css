@@ -4,31 +4,28 @@
     padding: 0;
 }
 
-/* body:hover {
-    cursor: url('../images/paw.png') !important;
-} */
-
 body {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
+    --size1: 2.875rem;
     --text-color: rgb(17, 20, 17);
     --link-hover-color: rgb(16, 56, 158);
     --bg1: #484848;
     --white: #EEEEEE;
-    --size1: 2.875rem;
     --dkbrwn: #4A3C34;
     --brown: #6c584c;
     --tan: #a98467;
     --green: #adc178;
     --ltgrn: #dde5b6;
     --cream: #f0ead2;
+    --card-box-shadow: 5px 5px 6px -1px #aaa;
     font-family: Montserrat;
+}
+
+header {
+    width: 100vw;
 }
 
 nav {
     background-color: var(--cream);
-    width: 100%;
     padding: .5rem 1rem;
     display: inline-flex;
     justify-content: space-between;
@@ -76,33 +73,5 @@ input[type="file"] {
 }
 
 .cave-image {
-    max-width: 40%;
+    max-width: 100%;
 }
-
-
-/* 
-ul {
-    list-style: none;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    font-size: 16px;
-}
-
-nav a:hover {
-    color: var(--link-hover-color);
-}
-
-nav ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-nav li {
-    padding: 5px 8px;
-} */

@@ -17,12 +17,23 @@
         <a href="{% url 'cave-detail' cave.id %}">
           <div class="card-content">
             <div class="image-container">
-              {% comment %} <img src="" alt="" /> {% endcomment %}
+              {% if cave.photo_set.all.0 %}
+                {% with photo=cave.photo_set.all.0 %}
+                  <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
+                {% endwith %}
+              {% else %}
+                <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
+              {% endif %}
             </div>
-            <h2 class="card-title">{{ cave.name }}</h2>
-            <p>
-              <small>{{ cave.description }}</small>
-            </p>
+            <div class="description-container">
+              <h2 class="card-title">{{ cave.name }}</h2>
+              <p>
+                <small>${{ cave.rate }}</small>
+              </p>
+              <p>
+                <small>{{ cave.address }}, {{ cave.city }} {{ cave.state }}</small>
+              </p>
+            </div>
           </div>
         </a>
       </div>
