@@ -1,12 +1,21 @@
-.form-container {
+.form-container table {
     margin: 0 auto;
 }
 
-form table td input {
+form table td input,
+form table td select {
     line-height: 2rem;
+    height: 2rem;
     background-color: var(--cream);
     box-shadow: inset 2px 5px 10px var(--dkbrwn);
     border-radius: 1rem;
     border: none;
     margin: 8px 0;
+}
+
+form textarea {
+    resize: vertical;
+    background-color: var(--cream);
+    box-shadow: inset 2px 5px 10px var(--dkbrwn);
+    border-radius: 1rem;
 }

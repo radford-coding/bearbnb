@@ -36,6 +36,7 @@ nav {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 5px 5px var(--brown);
 }
 
 nav>* {
@@ -44,14 +45,17 @@ nav>* {
     font-weight: 600;
 }
 
-nav button {
+nav button,
+nav a:not(:nth-child(2)) {
     flex-shrink: 0;
     width: calc(var(--size1) * 2);
     height: var(--size1);
     border-radius: calc(var(--size1) / 2);
-
+    text-align: center;
+    line-height: var(--size1);
     background-color: var(--bg1);
     color: var(--white);
+    font-size: 1rem;
 }
 
 body:hover {
