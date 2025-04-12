@@ -10,17 +10,19 @@
     aspect-ratio: 0.8/1;
     margin: 10px;
     border: solid 1px gray;
+    border-radius: 8px;
     position: relative;
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.5s cubic-bezier(.23, 1, .32, 1);
 }
-
-
-
-
-
-
 
 .card-content {
     padding: 5px;
+    position: relative;
+    z-index: 1;
     height: 100%;
     width: 100%;
     display: grid;
@@ -30,11 +32,12 @@
 .description-container {
     grid-row: 2 / span 1;
     padding: 0 10px;
+    text-transform: capitalize;
 }
 
 .image-container {
     grid-row: 1 / span 1;
-    border-radius: 10px;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,4 +77,8 @@
 
 .page-header>img:first-of-type {
     margin-left: 15px;
+}
+
+.card:hover {
+    transform: scale(1.02);
 }

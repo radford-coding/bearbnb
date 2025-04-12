@@ -18,19 +18,24 @@ body {
     --cream: #f0ead2;
     --card-box-shadow: 5px 5px 6px -1px #aaa;
     font-family: Montserrat;
+    background-color: var(--cream);
 }
 
 header {
     width: 100vw;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin-bottom: 20px;
 }
 
 nav {
+    width: 100vw;
+    padding: 10px;
     background-color: var(--cream);
-    padding: .5rem 1rem;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    gap: .625rem;
 }
 
 nav>* {

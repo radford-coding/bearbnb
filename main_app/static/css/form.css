@@ -1,0 +1,12 @@
+.form-container {
+    margin: 0 auto;
+}
+
+form table td input {
+    line-height: 2rem;
+    background-color: var(--cream);
+    box-shadow: inset 2px 5px 10px var(--dkbrwn);
+    border-radius: 1rem;
+    border: none;
+    margin: 8px 0;
+}
