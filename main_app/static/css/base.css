@@ -34,7 +34,7 @@ nav {
     padding: 10px;
     background-color: var(--cream);
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     box-shadow: 0 5px 5px var(--brown);
 }

@@ -6,6 +6,7 @@
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/caves/cave-detail.css' %}" />
   <script defer src="{% static 'js/helpers.js' %}"></script>
+  <script defer src="{% static 'js/slideshow.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -19,11 +20,19 @@
         for $<span id="rate">{{ cave.rate }}</span>/night
       </p>
       <p>description: {{ cave.description }}</p>
-      {% for photo in cave.photo_set.all %}
-        <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
-      {% empty %}
-        <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
-      {% endfor %}
+      <div class="slideshow-container">
+        {% for photo in cave.photo_set.all %}
+          <div class="slide fade">
+            <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
+          </div>
+        {% empty %}
+          <div class="slide fade">
+            <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
+          </div>
+        {% endfor %}
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
     </div>
   </div>
   {% if user.id == cave.owner.id %}
@@ -31,10 +40,7 @@
     <a href="{% url 'cave-delete' cave.id %}">Delete</a>
     <form action="{% url 'add-photo' cave.id %}" enctype="multipart/form-data" method="POST" class="">
       {% csrf_token %}
-      <label class="custom-file-upload">
-        <input type="file" name="photo-file" id="file-upload"/>
-        File Upload
-      </label>
+      <label class="custom-file-upload"><input type="file" name="photo-file" id="file-upload" />File Upload</label>
       <p id="uploaded-file-name"></p>
       <br />
       <br />
