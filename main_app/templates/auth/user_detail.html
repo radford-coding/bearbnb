@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <h1>USER</h1>
+  <h1>username: {{ user.username }}</h1>
+  <p>first name: {{ user.firstname }}</p>
+  <p>last name: {{ user.lastname }}</p>
+  {% for cave in user.cave_set.all %}
+    <a href="{% url 'cave-detail' cave.id %}">{{cave.name}}</a><br>
+  {% endfor %}
 {% endblock %}
