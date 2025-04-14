@@ -4,36 +4,40 @@
     padding: 0;
 }
 
-/* body:hover {
-    cursor: url('../images/paw.png') !important;
-} */
-
 body {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
+    --size1: 2.875rem;
     --text-color: rgb(17, 20, 17);
     --link-hover-color: rgb(16, 56, 158);
     --bg1: #484848;
     --white: #EEEEEE;
-    --size1: 2.875rem;
     --dkbrwn: #4A3C34;
     --brown: #6c584c;
     --tan: #a98467;
     --green: #adc178;
     --ltgrn: #dde5b6;
     --cream: #f0ead2;
+    --card-box-shadow: 5px 5px 6px -1px #aaa;
     font-family: Montserrat;
+    font-weight: bold;
+    background-color: var(--cream);
+}
+
+header {
+    width: 100vw;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin-bottom: 20px;
 }
 
 nav {
+    width: 100vw;
+    padding: 10px;
     background-color: var(--cream);
-    width: 100%;
-    padding: .5rem 1rem;
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    gap: .625rem;
+    box-shadow: 0 5px 5px var(--brown);
 }
 
 nav>* {
@@ -42,14 +46,23 @@ nav>* {
     font-weight: 600;
 }
 
-nav button {
+button,
+nav a:not(:nth-child(2)) {
     flex-shrink: 0;
     width: calc(var(--size1) * 2);
     height: var(--size1);
     border-radius: calc(var(--size1) / 2);
-
-    background-color: var(--bg1);
+    text-align: center;
+    line-height: var(--size1);
+    background-color: var(--brown);
     color: var(--white);
+    font-family: Montserrat;
+    font-size: 1rem;
+}
+
+button:hover,
+nav a:not(:nth-child(2)):hover {
+    background-color: var(--bg1);
 }
 
 body:hover {
@@ -59,7 +72,8 @@ body:hover {
 a:hover,
 button:hover,
 input:hover,
-form input {
+input,
+#id_start_date {
     cursor: url('../images/paw.png'), auto;
 }
 
@@ -76,33 +90,5 @@ input[type="file"] {
 }
 
 .cave-image {
-    max-width: 40%;
+    max-width: 100%;
 }
-
-
-/* 
-ul {
-    list-style: none;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    font-size: 16px;
-}
-
-nav a:hover {
-    color: var(--link-hover-color);
-}
-
-nav ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-nav li {
-    padding: 5px 8px;
-} */

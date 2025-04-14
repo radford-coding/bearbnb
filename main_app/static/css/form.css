@@ -1,0 +1,43 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="date"],
+form select,
+form textarea {
+    box-shadow: inset 2px 4px 8px var(--dkbrwn);
+    padding-left: 10px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="date"],
+form select {
+    line-height: 2rem;
+    height: 2rem;
+    background-color: var(--cream);
+    border-radius: 1rem;
+    border: none;
+    margin: 8px 0;
+    width: 80%;
+    padding-left: 10px;
+}
+
+form textarea {
+    resize: vertical;
+    background-color: var(--cream);
+    border-radius: 1rem;
+    padding: 10px;
+}
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder {
+    visibility: hidden !important;
+}
