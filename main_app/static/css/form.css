@@ -6,6 +6,7 @@
 
 form input[type="text"],
 form input[type="number"],
+form input[type="date"],
 form select,
 form textarea {
     box-shadow: inset 2px 4px 8px var(--dkbrwn);
@@ -14,6 +15,7 @@ form textarea {
 
 form input[type="text"],
 form input[type="number"],
+form input[type="date"],
 form select {
     line-height: 2rem;
     height: 2rem;
@@ -30,4 +32,12 @@ form textarea {
     background-color: var(--cream);
     border-radius: 1rem;
     padding: 10px;
+}
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder {
+    visibility: hidden !important;
 }

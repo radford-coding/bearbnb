@@ -72,7 +72,8 @@ body:hover {
 a:hover,
 button:hover,
 input:hover,
-form input {
+input,
+#id_start_date {
     cursor: url('../images/paw.png'), auto;
 }
 

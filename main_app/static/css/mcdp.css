@@ -1,0 +1,25 @@
+.mc-display__day,
+.mc-display__date,
+.mc-display__month,
+.mc-display__year,
+.mc-select__data,
+.mc-btn--danger,
+.mc-btn--success,
+.mc-date,
+.mc-table__weekday,
+.mc-picker__footer {
+  cursor: url('../images/paw.png');
+}
+
+.mc-display__date {
+  font-size: clamp(8rem, 40vw, 11.2rem);
+}
+
+.mc-select__data--month,
+.mc-select__data--month span,
+.mc-select__data--year,
+.mc-select__data--year span {
+  width: auto;
+  min-width: 8rem;
+  max-width: 10rem;
+}

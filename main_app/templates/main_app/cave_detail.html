@@ -3,42 +3,39 @@
 {% load static %}
 
 {% block head %}
+  <link href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/mcdp.css' %}" />
+  <script src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/caves/cave-detail.css' %}" />
   <link rel="stylesheet" href="{% static 'css/form.css' %}" />
-  <script defer src="{% static 'js/helpers.js' %}"></script>
   <script defer src="{% static 'js/slideshow.js' %}"></script>
+  <script defer src="{% static 'js/mcdp.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-  <div>
-    <div></div>
-    <div>
-      <h2>{{ cave.name }}</h2>
-      <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
-      <p>sleeps {{ cave.sleeps }}</p>
-      <p>
-        for $<span id="rate">{{ cave.rate }}</span>/night
-      </p>
-      <p>description: {{ cave.description }}</p>
-      <div class="slideshow-container">
-        {% for photo in cave.photo_set.all %}
-          <div class="slide fade">
-            <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
-          </div>
-        {% empty %}
-          <div class="slide fade">
-            <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
-          </div>
-        {% endfor %}
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  <div class="slideshow-container">
+    {% for photo in cave.photo_set.all %}
+      <div class="slide fade">
+        <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
       </div>
-    </div>
+    {% empty %}
+      <div class="slide fade">
+        <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
+      </div>
+    {% endfor %}
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
+  <h2>{{ cave.name }}</h2>
+  <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
+  <p>sleeps {{ cave.sleeps }}</p>
+  <p>
+    for $<span id="rate">{{ cave.rate }}</span>/night
+  </p>
+  <p>description: {{ cave.description }}</p>
   {% if user.id == cave.owner.id %}
     <a href="{% url 'cave-update' cave.id %}">Edit</a>
     <a href="{% url 'cave-delete' cave.id %}">Delete</a>
-    
   {% endif %}
   <hr />
   <h2>Booked hibernations:</h2>
@@ -51,7 +48,9 @@
   <form action="" method="post" class="form-container">
     {% csrf_token %}
     <table>{{ form.as_table }}</table>
-    <p>price: $<span id="price"></span></p>
+    <p>
+      price: $<span id="price"></span>
+    </p>
     <button type="submit" class="btn submit">Submit!</button>
   </form>
 {% endblock %}
