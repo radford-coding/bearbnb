@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% comment %} {% load multiplication %} {% endcomment %}
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/caves/cave-detail.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/form.css' %}" />
   <script defer src="{% static 'js/helpers.js' %}"></script>
   <script defer src="{% static 'js/slideshow.js' %}"></script>
 {% endblock %}
@@ -38,14 +38,7 @@
   {% if user.id == cave.owner.id %}
     <a href="{% url 'cave-update' cave.id %}">Edit</a>
     <a href="{% url 'cave-delete' cave.id %}">Delete</a>
-    <form action="{% url 'add-photo' cave.id %}" enctype="multipart/form-data" method="POST" class="">
-      {% csrf_token %}
-      <label class="custom-file-upload"><input type="file" name="photo-file" id="file-upload" />File Upload</label>
-      <p id="uploaded-file-name"></p>
-      <br />
-      <br />
-      <input type="submit" class="btn" value="Upload Photo" />
-    </form>
+    
   {% endif %}
   <hr />
   <h2>Booked hibernations:</h2>
@@ -58,7 +51,7 @@
   <form action="" method="post" class="form-container">
     {% csrf_token %}
     <table>{{ form.as_table }}</table>
-    <p id="price">price: $</p>
+    <p>price: $<span id="price"></span></p>
     <button type="submit" class="btn submit">Submit!</button>
   </form>
 {% endblock %}

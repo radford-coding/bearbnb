@@ -21,4 +21,13 @@
     <table>{{ form.as_table }}</table>
     <button type="submit" class="btn submit">Submit!</button>
   </form>
+  <hr>
+  <form action="{% url 'add-photo' cave.id %}" enctype="multipart/form-data" method="POST" class="">
+    {% csrf_token %}
+    <label class="custom-file-upload"><input type="file" name="photo-file" id="file-upload" />File Upload</label>
+    <p id="uploaded-file-name"></p>
+    <br />
+    <br />
+    <input type="submit" class="btn" value="Upload Photo" />
+  </form>
 {% endblock %}

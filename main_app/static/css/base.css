@@ -18,6 +18,7 @@ body {
     --cream: #f0ead2;
     --card-box-shadow: 5px 5px 6px -1px #aaa;
     font-family: Montserrat;
+    font-weight: bold;
     background-color: var(--cream);
 }
 
@@ -45,7 +46,7 @@ nav>* {
     font-weight: 600;
 }
 
-nav button,
+button,
 nav a:not(:nth-child(2)) {
     flex-shrink: 0;
     width: calc(var(--size1) * 2);
@@ -53,9 +54,15 @@ nav a:not(:nth-child(2)) {
     border-radius: calc(var(--size1) / 2);
     text-align: center;
     line-height: var(--size1);
-    background-color: var(--bg1);
+    background-color: var(--brown);
     color: var(--white);
+    font-family: Montserrat;
     font-size: 1rem;
+}
+
+button:hover,
+nav a:not(:nth-child(2)):hover {
+    background-color: var(--bg1);
 }
 
 body:hover {

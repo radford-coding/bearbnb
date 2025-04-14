@@ -1,21 +1,33 @@
-.form-container table {
-    margin: 0 auto;
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-form table td input,
-form table td select {
+form input[type="text"],
+form input[type="number"],
+form select,
+form textarea {
+    box-shadow: inset 2px 4px 8px var(--dkbrwn);
+    padding-left: 10px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
     line-height: 2rem;
     height: 2rem;
     background-color: var(--cream);
-    box-shadow: inset 2px 5px 10px var(--dkbrwn);
     border-radius: 1rem;
     border: none;
     margin: 8px 0;
+    width: 80%;
+    padding-left: 10px;
 }
 
 form textarea {
     resize: vertical;
     background-color: var(--cream);
-    box-shadow: inset 2px 5px 10px var(--dkbrwn);
     border-radius: 1rem;
+    padding: 10px;
 }
