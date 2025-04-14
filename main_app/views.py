@@ -8,6 +8,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.models import User
 from .models import Cave, Hibernation, Photo
 from .forms import HibernationForm
 import uuid
@@ -108,3 +109,8 @@ def add_photo(request, cave_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('cave-detail', pk=cave_id)
+
+class UserProfile(LoginRequiredMixin, DetailView):
+    model = User
+
+# def user_profile(request, user_id):
