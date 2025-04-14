@@ -7,7 +7,8 @@ const picker = MCDatepicker.create({
     closeOnBlur: true, // Close picker when clicking outside
     selectedDate: new Date(), // Default to today's date
     theme: {
-        theme_color: '#6c584c'
+        theme_color: '#6c584c',
+        main_background: '#dde5b6',
     }
 });
 

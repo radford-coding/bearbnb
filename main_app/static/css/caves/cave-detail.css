@@ -1,12 +1,8 @@
-input[name="nights"]:focus {
-    background-color: lightcyan;
-}
-
 .slideshow-container {
     max-width: 1000px;
     position: relative;
-    margin: auto;
-    width: 60vw;
+    margin: 10px auto;
+    width: 80vw;
     aspect-ratio: 3/2;
     overflow: hidden;
     border-radius: 10px;
@@ -62,4 +58,20 @@ input[name="nights"]:focus {
 .prev:hover,
 .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+.details {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info {
+    margin: 0 10vw;
+}
+
+.book {
+    margin: auto 10vw;
 }

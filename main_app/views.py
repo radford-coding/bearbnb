@@ -93,24 +93,12 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 
-# class HibernationCreateView(LoginRequiredMixin, CreateView):
-#     model = Hibernation
-#     fields = ['start_date', 'nights']
-
-# class HibernationUpdateView(LoginRequiredMixin, UpdateView):
-#     model = Hibernation
-#     fields = ['start_date', 'nights']
-
-# class HibernationDeleteView(LoginRequiredMixin, DeleteView):
-#     model = Hibernation
-#     success_url = '/caves/'
-
-
 def add_photo(request, cave_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        key = uuid.uuid4().hex[:6] + \
+            photo_file.name[photo_file.name.rfind('.'):]
         try:
             bucket = os.getenv('S3_BUCKET')
             s3.upload_fileobj(photo_file, bucket, key)
@@ -120,5 +108,3 @@ def add_photo(request, cave_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('cave-detail', pk=cave_id)
-    
-# SECRET_KEY = os.getenv('SECRET_KEY')

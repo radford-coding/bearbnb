@@ -17,7 +17,7 @@ body {
     --ltgrn: #dde5b6;
     --cream: #f0ead2;
     --card-box-shadow: 5px 5px 6px -1px #aaa;
-    font-family: Montserrat;
+    font-family: "Maven Pro", sans-serif;
     font-weight: bold;
     background-color: var(--cream);
 }
@@ -58,6 +58,10 @@ nav a:not(:nth-child(2)) {
     color: var(--white);
     font-family: Montserrat;
     font-size: 1rem;
+}
+
+form button {
+    margin: 5px auto;
 }
 
 button:hover,

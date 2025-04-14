@@ -13,6 +13,10 @@
 {% endblock %}
 
 {% block content %}
+  {% if user.id == cave.owner.id %}
+    <a href="{% url 'cave-update' cave.id %}"><button>Edit</button></a>
+    <a href="{% url 'cave-delete' cave.id %}"><button>Delete</button></a>
+  {% endif %}
   <div class="slideshow-container">
     {% for photo in cave.photo_set.all %}
       <div class="slide fade">
@@ -26,31 +30,34 @@
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
-  <h2>{{ cave.name }}</h2>
-  <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
-  <p>sleeps {{ cave.sleeps }}</p>
-  <p>
-    for $<span id="rate">{{ cave.rate }}</span>/night
-  </p>
-  <p>description: {{ cave.description }}</p>
-  {% if user.id == cave.owner.id %}
-    <a href="{% url 'cave-update' cave.id %}">Edit</a>
-    <a href="{% url 'cave-delete' cave.id %}">Delete</a>
-  {% endif %}
-  <hr />
+  <div class="details">
+    <div class="info">
+      <h2>{{ cave.name }}</h2>
+      <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
+      <p>sleeps: {{ cave.sleeps }}</p>
+      <p>
+        $<span id="rate">{{ cave.rate }}</span>/night
+      </p>
+      <p>description: {{ cave.description }}</p>
+    </div>
+    <div class="book">
+      <h2>Book a Hibernation:</h2>
+      <form action="" method="post" class="form-container">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <p>
+          price: $<span id="price"></span>
+        </p>
+        <button type="submit" class="btn submit">Submit!</button>
+      </form>
+    </div>
+  </div>
+
+  {% comment %} <hr />
   <h2>Booked hibernations:</h2>
   {% for hibernation in cave.hibernation_set.all %}
     <p>{{ hibernation.start_date }}</p>
   {% endfor %}
 
-  <hr />
-  <h2>Book a Hibernation:</h2>
-  <form action="" method="post" class="form-container">
-    {% csrf_token %}
-    <table>{{ form.as_table }}</table>
-    <p>
-      price: $<span id="price"></span>
-    </p>
-    <button type="submit" class="btn submit">Submit!</button>
-  </form>
+  <hr /> {% endcomment %}
 {% endblock %}
