@@ -47,6 +47,7 @@ nav>* {
 }
 
 button,
+input[type="submit"],
 nav a:not(:nth-child(2)) {
     flex-shrink: 0;
     width: calc(var(--size1) * 2);
@@ -56,7 +57,8 @@ nav a:not(:nth-child(2)) {
     line-height: var(--size1);
     background-color: var(--brown);
     color: var(--white);
-    font-family: Montserrat;
+    font-family: "Maven Pro", sans-serif;
+    font-weight: bold;
     font-size: 1rem;
 }
 
@@ -95,4 +97,34 @@ input[type="file"] {
 
 .cave-image {
     max-width: 100%;
+}
+
+.page-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.profile {
+    padding: 5px 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.profile > div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+footer {
+    position: absolute;
+    bottom: var(--size1);
+    left: var(--size1);
+}
+
+main > p,
+main > form {
+    margin: 0 10vw;
 }

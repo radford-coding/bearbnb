@@ -2,15 +2,15 @@ from ast import Del
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-# from .forms import SignUpForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
-from .models import Cave, Hibernation, Photo
-from .forms import HibernationForm
+from django.views import View
+from .models import Cave, Photo
+from .forms import HibernationForm, SearchForm
 import uuid
 import boto3
 from dotenv import load_dotenv
@@ -31,13 +31,18 @@ class About(TemplateView):
 
 class CaveIndex(LoginRequiredMixin, ListView):
     model = Cave
+    # form_class = SearchForm
+
+    # def get_queryset(self):
+    #     city = self.kwargs.get('city', '')
+    #     cave_list = self.model.objects.all()
+    #     if city:
+    #         cave_list = cave_list.filter(city__icontains=city)
+    #     return cave_list
 
 
 class CaveDetail(LoginRequiredMixin, DetailView):
     model = Cave
-
-    # def get_queryset(self):
-    #     return Cave.objects.all()  # maybe get just one?
 
     def get_context_data(self, **kwargs):
         form = HibernationForm()
@@ -80,13 +85,12 @@ class CaveDelete(LoginRequiredMixin, DeleteView):
 def signup(request):
     error_msg = ''
     if request.method == 'POST':
-        form = UserCreationForm()
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('cave-index')
         else:
-            # needs more descriptive feedback. also doesn't work...
             error_msg = 'Invalid sign-up - try again'
 
     form = UserCreationForm()
@@ -110,7 +114,23 @@ def add_photo(request, cave_id):
             print(e)
     return redirect('cave-detail', pk=cave_id)
 
+
 class UserProfile(LoginRequiredMixin, DetailView):
     model = User
 
-# def user_profile(request, user_id):
+class SearchView(LoginRequiredMixin, View):
+    query = None
+    results = []
+    form_class = SearchForm
+
+    def get(self, request):
+        form = self.form_class
+        if 'query' in request.GET:
+            form = self.form_class(request.GET)
+            if form.is_valid():
+                query = form.cleaned_data['query']
+                results = Cave.objects.raw("SELECT * FROM main_app_cave WHERE MATCH (city) AGAINST (%s)", [query])
+                print('results', results)
+                return render(request, 'main_app/search.html', {'form': form, 'query': query, 'results': results})
+            return render(request, 'main_app/search.html', {'form': form})
+        return render(request, 'main_app/search.html', {'form': form})

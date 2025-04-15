@@ -19,18 +19,18 @@
   <body>
     <header>
       <nav>
-        <img src="{% static 'images/paw.png' %}" alt="A bear paw" />
-        <a href="/"><h1>BearBnB</h1></a>
+        <img src="{% static 'images/paw.png' %}" alt="A bear paw logo" />
+        <a href="{% url 'about' %}"><h1>BearBnB</h1></a>
         {% if user.is_authenticated %}
           <a href="{% url 'cave-index' %}">Caves</a>
           <a href="{% url 'cave-create' %}">Add Cave</a>
-          <a href="{% url 'about' %}">About</a>
+          <a href="{% url 'search' %}">Search</a>
+          <a href="{% url 'profile' user.id %}">Profile</a>
           <form id="logout-form" method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit">Log out</button>
           </form>
         {% else %}
-          <a href="{% url 'about' %}">About</a>
           <a href="{% url 'signup' %}">Sign Up</a>
           <a href="{% url 'home' %}">Login</a>
         {% endif %}

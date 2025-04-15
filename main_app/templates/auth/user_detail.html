@@ -1,5 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <h1>USER</h1>
+  <div class="page-header">
+    <h1>{{ user.username }}</h1>
+  </div>
+  <div class="profile">
+    <div>
+      <h2>caves:</h2>
+      {% for cave in user.cave_set.all %}
+        <a href="{% url 'cave-detail' cave.id %}">{{ cave.name }}</a><br />
+      {% empty %}
+        <p>[no caves listed yet]</p>
+      {% endfor %}
+    </div>
+
+    <div>
+      <h3>hibernations:</h3>
+      {% for hibernation in user.hibernation_set.all %}
+        <p>
+          {{ hibernation.start_date }} - {{ hibernation.nights }} nights in <a href="{% url 'cave-detail' hibernation.cave.id %}">{{ hibernation.cave.name }}</a>
+        </p>
+      {% empty %}
+        <p>[no hibernations booked yet]</p>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
