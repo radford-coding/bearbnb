@@ -78,13 +78,3 @@
 .page-header>img:first-of-type {
     margin-left: 15px;
 }
-
-/* .card:hover {
-    display: initial;
-    transform: scale(calc(120/118)) translateZ(0);
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    transform-origin: 100% 0;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
-} */

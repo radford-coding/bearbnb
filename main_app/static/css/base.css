@@ -101,3 +101,17 @@ input[type="file"] {
     display: flex;
     justify-content: center;
 }
+
+.profile {
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.profile > div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}

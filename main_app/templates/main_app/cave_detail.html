@@ -33,12 +33,12 @@
   <div class="details">
     <div class="info">
       <h2>{{ cave.name }}</h2>
-      <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
-      <p>sleeps: {{ cave.sleeps }}</p>
+      <p>{{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
       <p>
-        $<span id="rate">{{ cave.rate }}</span>/night
+        sleeps {{ cave.sleeps }}, $<span id="rate">{{ cave.rate }}</span>/night
       </p>
-      <p>description: {{ cave.description }}</p>
+      <br><br>
+      <p>{{ cave.description }}</p>
     </div>
     <div class="book">
       <h2>Book a Hibernation:</h2>

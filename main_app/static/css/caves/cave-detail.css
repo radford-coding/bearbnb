@@ -75,3 +75,7 @@
 .book {
     margin: auto 10vw;
 }
+
+.info > *:not(:last-child) {
+    text-transform: capitalize;
+}

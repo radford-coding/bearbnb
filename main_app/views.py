@@ -2,7 +2,6 @@ from ast import Del
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-# from .forms import SignUpForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
@@ -10,7 +9,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from .models import Cave, Hibernation, Photo
-from .forms import HibernationForm
+from .forms import HibernationForm, ProfileForm
 import uuid
 import boto3
 from dotenv import load_dotenv
@@ -35,9 +34,6 @@ class CaveIndex(LoginRequiredMixin, ListView):
 
 class CaveDetail(LoginRequiredMixin, DetailView):
     model = Cave
-
-    # def get_queryset(self):
-    #     return Cave.objects.all()  # maybe get just one?
 
     def get_context_data(self, **kwargs):
         form = HibernationForm()
@@ -109,7 +105,6 @@ def add_photo(request, cave_id):
             print(e)
     return redirect('cave-detail', pk=cave_id)
 
+
 class UserProfile(LoginRequiredMixin, DetailView):
     model = User
-
-# def user_profile(request, user_id):
