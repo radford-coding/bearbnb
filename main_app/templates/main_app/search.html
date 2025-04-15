@@ -7,13 +7,8 @@
 
 
 {% block content %}
-  {% if query %}
-    <h1>Article containing "{{ query }}"</h1>
-    {% comment %} <h3>
-      {% with total_results=results.count %}
-        Found {{ total_results }} result{{ total_results|pluralize }}
-      {% endwith %}
-    </h3> {% endcomment %}
+  {% if city %}
+    <h1>Caves in "{{ city }}"</h1>
 
     {% for cave in results %}
       <div class="card">

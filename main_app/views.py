@@ -123,14 +123,15 @@ class SearchView(LoginRequiredMixin, View):
     results = []
     form_class = SearchForm
 
+
     def get(self, request):
         form = self.form_class
-        if 'query' in request.GET:
+        if 'city' in request.GET:
             form = self.form_class(request.GET)
             if form.is_valid():
-                query = form.cleaned_data['query']
-                results = Cave.objects.raw("SELECT * FROM main_app_cave WHERE MATCH (city) AGAINST (%s)", [query])
+                city = form.cleaned_data['city']
+                results = Cave.objects.filter(city__icontains=city)
                 print('results', results)
-                return render(request, 'main_app/search.html', {'form': form, 'query': query, 'results': results})
+                return render(request, 'main_app/search.html', {'form': form, 'city': city, 'results': results})
             return render(request, 'main_app/search.html', {'form': form})
         return render(request, 'main_app/search.html', {'form': form})
