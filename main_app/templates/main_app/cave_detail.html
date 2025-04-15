@@ -14,8 +14,10 @@
 
 {% block content %}
   {% if user.id == cave.owner.id %}
-    <a href="{% url 'cave-update' cave.id %}"><button>Edit</button></a>
-    <a href="{% url 'cave-delete' cave.id %}"><button>Delete</button></a>
+    <div class="page-header">
+      <a href="{% url 'cave-update' cave.id %}"><button>Edit</button></a>
+      <a href="{% url 'cave-delete' cave.id %}"><button>Delete</button></a>
+    </div>
   {% endif %}
   <div class="slideshow-container">
     {% for photo in cave.photo_set.all %}

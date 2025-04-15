@@ -11,7 +11,7 @@
   <div class="page-header">
     {% if cave %}
       <h1>edit {{ cave.name }}</h1>
-      <p>location: {{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
+      <p>{{ cave.address }}, {{ cave.city }} {{ cave.state }} {{ cave.zipcode }}</p>
     {% else %}
       <h1>Add a Cave</h1>
     {% endif %}
@@ -22,7 +22,9 @@
     <table>{{ form.as_table }}</table>
     <button type="submit" class="btn submit">Submit!</button>
   </form>
+  <br>
   <hr />
+  <br>
   {% if cave %}
     <form action="{% url 'add-photo' cave.id %}" enctype="multipart/form-data" method="POST" class="">
       {% csrf_token %}
@@ -30,7 +32,7 @@
       <p id="uploaded-file-name"></p>
       <br />
       <br />
-      <input type="submit" class="btn" value="Upload Photo" />
+      <input type="submit" class="btn" value="Upload" />
     </form>
   {% endif %}
 {% endblock %}

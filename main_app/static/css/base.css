@@ -6,8 +6,6 @@
 
 body {
     --size1: 2.875rem;
-    --text-color: rgb(17, 20, 17);
-    --link-hover-color: rgb(16, 56, 158);
     --bg1: #484848;
     --white: #EEEEEE;
     --dkbrwn: #4A3C34;
@@ -101,8 +99,15 @@ input[type="file"] {
 
 .page-header {
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
+    align-items: center;
     margin-bottom: 10px;
+    gap: 5px;
+}
+
+.page-header > p {
+    text-transform: capitalize;
 }
 
 .profile {
@@ -116,6 +121,15 @@ input[type="file"] {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+}
+
+.profile a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile a:hover {
+    text-decoration: underline;
 }
 
 footer {

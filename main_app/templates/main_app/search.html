@@ -3,53 +3,45 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/caves/cave-index.css' %}" />
 {% endblock %}
 
-
 {% block content %}
-  {% if query %}
-    <h1>Article containing "{{ query }}"</h1>
-    {% comment %} <h3>
-      {% with total_results=results.count %}
-        Found {{ total_results }} result{{ total_results|pluralize }}
-      {% endwith %}
-    </h3> {% endcomment %}
-
-    {% for cave in results %}
-      <div class="card">
-        <a href="{% url 'cave-detail' cave.id %}">
-          <div class="card-content">
-            <div class="image-container">
-              {% if cave.photo_set.all.0 %}
-                {% with photo=cave.photo_set.all.0 %}
-                  <img src="{{ photo.url }}" alt="an image of this cave" class="cave-image" />
-                {% endwith %}
-              {% else %}
-                <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
-              {% endif %}
+  {% if city %}
+    <h1>Caves in "{{ city }}"</h1>
+    <section class="card-container">
+      {% for cave in results %}
+        <div class="card">
+          <a href="{% url 'cave-detail' cave.id %}">
+            <div class="card-content">
+              <div class="image-container">
+                {% if cave.photo_set.all.0 %}
+                  {% with photo=cave.photo_set.all.0 %}
+                    <img src="{{ photo.url }}" alt="an image of this cave" class="cave-image" />
+                  {% endwith %}
+                {% else %}
+                  <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />
+                {% endif %}
+              </div>
+              <div class="description-container">
+                <h2 class="card-title">{{ cave.name }}</h2>
+                <p>
+                  <small>${{ cave.rate }}</small>
+                </p>
+                <p>
+                  <small>{{ cave.address }}, {{ cave.city }} {{ cave.state }}</small>
+                </p>
+              </div>
             </div>
-            <div class="description-container">
-              <h2 class="card-title">{{ cave.name }}</h2>
-              <p>
-                <small>${{ cave.rate }}</small>
-              </p>
-              <p>
-                <small>{{ cave.address }}, {{ cave.city }} {{ cave.state }}</small>
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    {% empty %}
-      <p>No results found.</p>
-    {% endfor %}
-
-    <p>
-      <a href="{% url 'search' %}">Search again</a>
-    </p>
+          </a>
+        </div>
+      {% empty %}
+        <p>No results found.</p>
+      {% endfor %}
+    </section>
   {% else %}
     <div class="page-header">
-        <h1>Search for caves by city</h1>
+      <h1>Search for caves by city</h1>
     </div>
     <form method="get">
       {{ form.as_p }}
