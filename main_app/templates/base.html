@@ -25,6 +25,7 @@
           <a href="{% url 'cave-index' %}">Caves</a>
           <a href="{% url 'cave-create' %}">Add Cave</a>
           <a href="{% url 'about' %}">About</a>
+          <a href="{% url 'profile' user.id %}">Profile</a>
           <form id="logout-form" method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit">Log out</button>

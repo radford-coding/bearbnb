@@ -80,13 +80,12 @@ class CaveDelete(LoginRequiredMixin, DeleteView):
 def signup(request):
     error_msg = ''
     if request.method == 'POST':
-        form = UserCreationForm()
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('cave-index')
         else:
-            # needs more descriptive feedback. also doesn't work...
             error_msg = 'Invalid sign-up - try again'
 
     form = UserCreationForm()
