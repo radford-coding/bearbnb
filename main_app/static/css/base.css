@@ -56,7 +56,8 @@ nav a:not(:nth-child(2)) {
     line-height: var(--size1);
     background-color: var(--brown);
     color: var(--white);
-    font-family: Montserrat;
+    font-family: "Maven Pro", sans-serif;
+    font-weight: bold;
     font-size: 1rem;
 }
 
@@ -100,13 +101,13 @@ input[type="file"] {
 .page-header {
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .profile {
     padding: 5px 20px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: space-around;
 }
 
@@ -114,4 +115,14 @@ input[type="file"] {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+}
+
+footer {
+    position: absolute;
+    bottom: var(--size1);
+    left: var(--size1);
+}
+
+main > p {
+    margin: 0 10vw;
 }

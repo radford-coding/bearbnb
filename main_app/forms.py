@@ -1,8 +1,7 @@
 from django import forms
 # from django.contrib.auth.forms import AuthenticationForm
-from django.forms import ModelForm
 from django.contrib.auth.models import User
-from .models import Hibernation
+from .models import Cave, Hibernation
 
 
 class HibernationForm(forms.ModelForm):
@@ -19,8 +18,12 @@ class HibernationForm(forms.ModelForm):
             )
         }
 
-class ProfileForm(ModelForm):
+# class ProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['first_name', 'last_name', 'email']
+
+class SearchForm(forms.ModelForm):
     class Meta:
-        model = User
-        # fields = '__all__'
-        fields = ['first_name', 'last_name', 'email']
+        model = Cave
+        fields = ['city']

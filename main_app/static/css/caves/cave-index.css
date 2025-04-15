@@ -9,7 +9,7 @@
     width: 224px;
     aspect-ratio: 0.8/1;
     margin: 10px;
-    border: solid 1px gray;
+    border: solid 1px var(--brown);
     border-radius: 8px;
     position: relative;
     overflow: hidden;

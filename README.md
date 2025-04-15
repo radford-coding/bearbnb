@@ -6,3 +6,4 @@
 3. [hiding default date picker](https://stackoverflow.com/a/70881945)
 4. [form style inspo](https://uiverse.io/Praashoo7/brave-moose-56)
 5. [AWS S3 image storage](https://git.generalassemb.ly/WDI-CC-LIBRARY/django-uploading-images)
+6.  [searching models](https://medium.com/@nutanbhogendrasharma/implement-search-functionality-with-class-based-views-on-the-django-blog-website-part-15-9b8cc53ed10f)
