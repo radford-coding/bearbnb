@@ -80,6 +80,6 @@
     max-width: 40vw;
 }
 
-.info > *:not(:last-child) {
+.info > *:nth-child(-n+2) {
     text-transform: capitalize;
 }
