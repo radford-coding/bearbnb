@@ -31,14 +31,6 @@ class About(TemplateView):
 
 class CaveIndex(LoginRequiredMixin, ListView):
     model = Cave
-    # form_class = SearchForm
-
-    # def get_queryset(self):
-    #     city = self.kwargs.get('city', '')
-    #     cave_list = self.model.objects.all()
-    #     if city:
-    #         cave_list = cave_list.filter(city__icontains=city)
-    #     return cave_list
 
 
 class CaveDetail(LoginRequiredMixin, DetailView):
@@ -118,11 +110,11 @@ def add_photo(request, cave_id):
 class UserProfile(LoginRequiredMixin, DetailView):
     model = User
 
+
 class SearchView(LoginRequiredMixin, View):
     query = None
     results = []
     form_class = SearchForm
-
 
     def get(self, request):
         form = self.form_class
@@ -131,7 +123,6 @@ class SearchView(LoginRequiredMixin, View):
             if form.is_valid():
                 city = form.cleaned_data['city']
                 results = Cave.objects.filter(city__icontains=city)
-                print('results', results)
                 return render(request, 'main_app/search.html', {'form': form, 'city': city, 'results': results})
             return render(request, 'main_app/search.html', {'form': form})
         return render(request, 'main_app/search.html', {'form': form})
