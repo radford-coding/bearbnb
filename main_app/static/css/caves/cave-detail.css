@@ -61,19 +61,21 @@
 }
 
 .details {
-    width: 100vw;
+    width: 80vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 0 10vw;
+    gap: 10px;
 }
 
 .info {
-    margin: 0 10vw;
+    max-width: 40vw;
 }
 
 .book {
-    margin: auto 10vw;
+    max-width: 40vw;
 }
 
 .info > *:not(:last-child) {
