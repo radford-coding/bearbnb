@@ -2,7 +2,7 @@
 
 ![bear paw](./main_app/static/images/paw.png)
 
-A collection of caves and hibernations for vacationing bears.
+A collection of caves and hibernations for vacationing bears. Users can sign up, log in, browse caves and search by city, book hibernations, list their own caves, and see their profile info.
 
 [BearBnB](https://bearbnb-43c85a3ade2e.herokuapp.com/)
 [Trello planning board](https://trello.com/b/CmtEexug/project-4-bearbnb)
@@ -19,12 +19,11 @@ A collection of caves and hibernations for vacationing bears.
 1. Django app
 2. PostgreSQL database
 3. Heroku deployment
-4. CSS for styling
-4. JS for some responsive elements
-5. MCDatePicker js library
-6. Google Fonts
+4. Amazon S3 bucket for image management
+4. CSS for styling, and Google Fonts
+4. JS for some responsive elements, and MCDatePicker js library
 
 ## Future improvements
-1. Search functionality - with parameters for price range, within a certain radius of a city, etc.
+1. Search functionality improvements - with parameters for price range, within a certain radius of a city, etc.
 2. A less old-timey theme
-3. Let bears review their stays in caves
+3. Let bears review their stays in caves and leave comments
