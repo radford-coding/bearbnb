@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+
+
 {% block content %}
   {% if query %}
     <h1>Article containing "{{ query }}"</h1>
@@ -17,7 +22,7 @@
             <div class="image-container">
               {% if cave.photo_set.all.0 %}
                 {% with photo=cave.photo_set.all.0 %}
-                  <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
+                  <img src="{{ photo.url }}" alt="an image of this cave" class="cave-image" />
                 {% endwith %}
               {% else %}
                 <img src="{% static 'images/bear-cave.png' %}" alt="A bear in a cave" class="cave-image" />

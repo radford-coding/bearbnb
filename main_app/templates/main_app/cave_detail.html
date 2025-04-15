@@ -20,7 +20,7 @@
   <div class="slideshow-container">
     {% for photo in cave.photo_set.all %}
       <div class="slide fade">
-        <img src="{{ photo.url }}" alt="image of this cave" class="cave-image" />
+        <img src="{{ photo.url }}" alt="an image of this cave" class="cave-image" />
       </div>
     {% empty %}
       <div class="slide fade">

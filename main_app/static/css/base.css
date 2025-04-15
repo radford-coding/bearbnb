@@ -47,6 +47,7 @@ nav>* {
 }
 
 button,
+input[type="submit"],
 nav a:not(:nth-child(2)) {
     flex-shrink: 0;
     width: calc(var(--size1) * 2);
