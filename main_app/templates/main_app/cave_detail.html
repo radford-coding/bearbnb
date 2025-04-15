@@ -41,6 +41,10 @@
       </p>
       <br /><br />
       <p>{{ cave.description }}</p>
+      <br /><br />
+      <p>
+        Hosted by <a href="{% url 'profile' cave.owner.id %}">{{ cave.owner.username }}</a>
+      </p>
     </div>
     <div class="book">
       <h2>Book a Hibernation:</h2>
