@@ -124,6 +124,7 @@ footer {
     left: var(--size1);
 }
 
-main > p {
+main > p,
+main > form {
     margin: 0 10vw;
 }

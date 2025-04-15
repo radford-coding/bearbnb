@@ -48,7 +48,9 @@
       <a href="{% url 'search' %}">Search again</a>
     </p>
   {% else %}
-    <h1>Search for caves by city</h1>
+    <div class="page-header">
+        <h1>Search for caves by city</h1>
+    </div>
     <form method="get">
       {{ form.as_p }}
       <input type="submit" value="Search" />
