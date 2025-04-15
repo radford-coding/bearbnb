@@ -28,12 +28,6 @@ class Cave(models.Model):
     def get_absolute_url(self):
         return reverse("cave-detail", kwargs={"pk": self.id})
 
-# user profile
-# class Bear(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=100)
-
-
 
 class Photo(models.Model):
     url = models.TextField()

@@ -22,9 +22,9 @@
     <table>{{ form.as_table }}</table>
     <button type="submit" class="btn submit">Submit!</button>
   </form>
-  <br>
+  <br />
   <hr />
-  <br>
+  <br />
   {% if cave %}
     <form action="{% url 'add-photo' cave.id %}" enctype="multipart/form-data" method="POST" class="">
       {% csrf_token %}

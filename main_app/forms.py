@@ -18,10 +18,6 @@ class HibernationForm(forms.ModelForm):
             )
         }
 
-# class ProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['first_name', 'last_name', 'email']
 
 class SearchForm(forms.ModelForm):
     class Meta:

@@ -39,7 +39,7 @@
       <p>
         sleeps {{ cave.sleeps }}, $<span id="rate">{{ cave.rate }}</span>/night
       </p>
-      <br><br>
+      <br /><br />
       <p>{{ cave.description }}</p>
     </div>
     <div class="book">
@@ -54,12 +54,4 @@
       </form>
     </div>
   </div>
-
-  {% comment %} <hr />
-  <h2>Booked hibernations:</h2>
-  {% for hibernation in cave.hibernation_set.all %}
-    <p>{{ hibernation.start_date }}</p>
-  {% endfor %}
-
-  <hr /> {% endcomment %}
 {% endblock %}
